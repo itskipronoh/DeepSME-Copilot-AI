@@ -5,7 +5,7 @@
 
 # DeepSME Copilot
 
-**AI-Powered Assistant for African Small and Micro-Enterprises**
+**AI-Powered Assistant for Small and Micro-Enterprises**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Node version](https://img.shields.io/badge/Node.js->=20-3c873a?style=flat-square)](https://nodejs.org/)
@@ -13,11 +13,13 @@
 
 :star: If you like this project, star it on GitHub — it helps a lot!
 
-[Problem Statement](#the-problem-i-am-solving) • [Technical Architecture](#technical-architecture) • [Features](#features) • [Getting Started](#getting-started) • [Architecture](#architecture) • [Troubleshooting](#troubleshooting)
+[Problem Statement](#the-problem-statement) • [Technical Architecture](#technical-architecture) • [Features](#features) • [Getting Started](#getting-started) • [Architecture](#architecture) • [Contributing](#contributing) • [Trademark](#trademark)
 
 </div>
 
-## The Problem I Am Solving
+![DeepSME Copilot Demo](./docs/images/sme.png)
+
+## The Problem Statement
 
 Small and Micro-Enterprises (SMEs) in Africa face significant challenges in accessing reliable business guidance, financial literacy support, and compliance information. Specifically:
 
@@ -193,10 +195,6 @@ The quickest way is to use your local environment for development. You can also 
 - **USSD Gateway**: For feature phone access (future enhancement)
 - **Government APIs**: Direct integration with MSEA, KRA systems (future enhancement)
 
-## Troubleshooting
-
-If you encounter issues while running or deploying DeepSME Copilot, please check our [troubleshooting guide](./docs/troubleshooting.md). For additional support, please [open an issue](https://github.com/USER/deepsme-copilot/issues) in this repository.
-
 ### **Common Issues**
 
 - **"We are currently experiencing an issue"**: Check OpenAI API key configuration
@@ -221,7 +219,7 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 <div align="center">
 
-**Built with ❤️ for African SMEs**
+**Built with ❤️ for SMEs**
 
 _Empowering small businesses with AI-driven guidance_
 
