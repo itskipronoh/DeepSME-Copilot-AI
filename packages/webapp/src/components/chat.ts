@@ -40,7 +40,7 @@ export const chatDefaultOptions: ChatComponentOptions = {
   enablePromptSuggestions: true,
   promptSuggestions: [
     'How do I access the Financial Inclusion Fund for my SME?',
-    'What training programs does KEJET/NYOTA offer for small businesses and How do I apply for them?',
+    'What training programs does KJET/NYOTA offer for small businesses and How do I apply for them?',
     'How can I register my cooperative with the Ministry of Co-operatives?',
     'What business development services are available from MSEA?',
   ],
