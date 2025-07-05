@@ -13,9 +13,7 @@
 
 :star: If you like this project, star it on GitHub — it helps a lot!
 
-[Problem Statement](#the-problem-i-am-solving) • [Why This Template](#why-i-picked-this-template) • [Customizations](#what-customizations-i-made) • [Getting Started](#getting-started) • [Architecture](#architecture) • [Troubleshooting](#troubleshooting)
-
-![DeepSME Copilot Demo](./docs/images/demo.gif)
+[Problem Statement](#the-problem-i-am-solving) • [Technical Architecture](#technical-architecture) • [Features](#features) • [Getting Started](#getting-started) • [Architecture](#architecture) • [Troubleshooting](#troubleshooting)
 
 </div>
 
@@ -52,7 +50,7 @@ Small and Micro-Enterprises (SMEs) in Africa face significant challenges in acce
 **DeepSME Copilot addresses these challenges by providing an AI-powered assistant that offers instant, practical guidance in simple language, backed by official Kenyan SME resources.**
 
 > [!TIP]
-> You can test this application locally without any cost using [Ollama](https://ollama.com/). Follow the instructions in the [Local Development](#local-development) section to get started.
+> You can test this application locally without any cost using [Ollama](https://ollama.com/).
 
 ## Overview
 
@@ -76,74 +74,34 @@ This application is made from multiple components:
 
 I use the [HTTP protocol for AI chat apps](https://aka.ms/chatprotocol) to communicate between the web app and the API.
 
-## Why I Picked This Template
+## Technical Architecture
 
-I chose the **Azure Serverless AI Chat with RAG using LangChain.js** template because it provides:
+This application leverages modern serverless technologies and AI frameworks to deliver a scalable, cost-effective solution:
 
-### **Technical Advantages**
+### **Core Technologies**
 
-- **Serverless Architecture**: Cost-effective scaling for SMEs with varying usage patterns
-- **RAG (Retrieval-Augmented Generation)**: Ensures responses are based on verified official documents
-- **Multi-modal Support**: Can integrate with WhatsApp, USSD, and web for diverse user access
-- **Offline Capability**: Can run locally with Ollama for areas with limited internet
+- **Frontend**: Lit web components for lightweight, fast-loading interface
+- **Backend**: Azure Functions with TypeScript for serverless compute
+- **AI Framework**: LangChain.js for document processing and response generation
+- **Vector Database**: Azure Cosmos DB for NoSQL with vector search capabilities
+- **Document Storage**: Azure Blob Storage for scalable file management
+- **Hosting**: Azure Static Web Apps for global content delivery
 
-### **Business Benefits**
+### **AI Implementation**
 
-- **Quick Deployment**: Faster time-to-market for SME assistance
-- **Document Integration**: Easy ingestion of official Kenyan government documents
-- **Chat History**: Maintains conversation context for ongoing business guidance
-- **Customizable**: Flexible framework for African market adaptation
+- **Retrieval-Augmented Generation (RAG)**: Combines document retrieval with generative AI
+- **Multi-Model Support**: OpenAI GPT-4o-mini for production, Ollama for local development
+- **Vector Embeddings**: Semantic search across business documents
+- **Context Management**: Maintains conversation history for coherent interactions
+- **Streaming Responses**: Real-time response generation for better user experience
 
-### **SME-Specific Features**
+### **Performance & Scalability**
 
-- **Multiple AI Models**: OpenAI for cloud, Ollama for local deployment
-- **Document Management**: Perfect for integrating MSEA, KEJET, NYOTA resources
-- **Scalable Storage**: Azure Cosmos DB for growing user base
-- **Cost Control**: Pay-per-use model suitable for development budgets
-
-## What Customizations I Made
-
-### **1. Complete Branding Transformation**
-
-- **Logo Design**: Created interactive neural network logo with hexagonal SME structure
-- **Color Scheme**: Changed from green to professional navy blue with AI aesthetics
-- **Typography**: Updated to reflect business professionalism
-- **Favicon**: Custom SVG with SME business patterns
-
-### **2. SME-Focused Content**
-
-- **System Prompt**: Rewrote AI assistant persona to focus on African SME support
-- **Prompt Suggestions**: Replaced generic examples with specific Kenyan business questions:
-  - "How do I access the Financial Inclusion Fund for my SME?"
-  - "What training programs does KEJET/NYOTA offer for small businesses and How do I apply for them?"
-  - "How can I register my cooperative with the Ministry of Co-operatives?"
-  - "What business development services are available from MSEA?"
-
-### **3. UI/UX Enhancements**
-
-- **Welcome Message**: "Welcome to DeepSME Copilot! Ask me anything about your business..."
-- **Mobile Responsiveness**: Enhanced navigation for mobile/USSD integration
-- **Accessibility**: Improved for users with varying tech literacy levels
-- **Interactive Elements**: Animated logo with neural network patterns
-
-### **4. Backend Optimizations**
-
-- **OpenAI Integration**: Configured for OpenAI API instead of Azure OpenAI for broader access
-- **Document Structure**: Prepared for Kenyan government document ingestion
-- **Error Handling**: Improved user-friendly error messages
-- **Performance**: Optimized for African internet conditions
-
-### **5. Content Preparation**
-
-- **Sample Documents**: Created SME business guide with Kenyan context
-- **Official Sources**: Prepared structure for MSEA, KEJET, NYOTA, Ministry documents
-- **Language Support**: Framework for Swahili and local language integration
-
-### **6. Deployment Configuration**
-
-- **Environment Variables**: Configured for OpenAI API and Azure services
-- **Local Development**: Set up Ollama for offline testing
-- **Security**: Enhanced for business data protection
+- **Serverless Architecture**: Auto-scaling based on demand
+- **Global Distribution**: Azure CDN for low-latency access across Africa
+- **Caching Strategy**: Optimized for frequently accessed business information
+- **Mobile-First Design**: Responsive interface for mobile and desktop users
+- **Offline Capability**: Local deployment option for areas with limited connectivity
 
 ## Features
 
@@ -165,7 +123,7 @@ There are multiple ways to get started with this project.
 The quickest way is to use your local environment for development. You can also deploy directly to Azure for production use.
 
 > [!IMPORTANT]
-> If you want to run this application entirely locally using Ollama, follow the instructions in the [Local Development with Ollama](#local-development-with-ollama) section.
+> If you want to run this application entirely locally using Ollama, install [Ollama](https://ollama.com) and the required models first.
 
 ### Prerequisites
 
@@ -267,6 +225,6 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 _Empowering small businesses with AI-driven guidance_
 
-**© 2025 itskipronoh. All rights reserved.**
+**Made by [@itskipronoh](https://github.com/itskipronoh) • Licensed under MIT**
 
 </div>
