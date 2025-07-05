@@ -235,126 +235,6 @@ The quickest way is to use your local environment for development. You can also 
 - **USSD Gateway**: For feature phone access (future enhancement)
 - **Government APIs**: Direct integration with MSEA, KRA systems (future enhancement)
 
-## Run the Application
-
-There are multiple ways to run this application: locally using Ollama or Azure OpenAI models, or by deploying it to Azure.
-
-### Deploy to Azure
-
-#### Azure Prerequisites
-
-- **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free) to get free Azure credits to get started.
-- **Azure subscription with access enabled for the Azure OpenAI service**. You can request access with [this form](https://aka.ms/oaiapply).
-- **Azure account permissions**:
-  - Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner).
-  - Your Azure account also needs `Microsoft.Resources/deployments/write` permissions on the subscription level.
-
-#### Cost Estimation
-
-See the [cost estimation](./docs/cost.md) details for running this application on Azure.
-
-#### Deploy the Application
-
-1. Open a terminal and navigate to the root of the project.
-2. Authenticate with Azure by running `azd auth login`.
-3. Run `azd up` to deploy the application to Azure. This will provision Azure resources, deploy the application, and build the search index based on the SME documents found in the `./data` folder.
-   - You will be prompted to select a base location for the resources. If you're unsure of which location to choose, select `eastus2`.
-   - By default, the OpenAI resource will be deployed to `eastus2`. You can set a different location with `azd env set AZURE_OPENAI_RESOURCE_GROUP_LOCATION <location>`.
-
-The deployment process will take a few minutes. Once it's done, you'll see the URL of the web app in the terminal.
-
-<div align="center">
-  <img src="./docs/images/azd-up.png" alt="Screenshot of the azd up command result" width="600px" />
-</div>
-
-You can now open the web app in your browser and start asking SME-related questions.
-
-##### Enhance Security
-
-When deploying in an enterprise context, you may want to enforce tighter security restrictions to protect your data and resources. See the [enhance security](./docs/enhance-security.md) guide for more information.
-
-#### Clean Up
-
-To clean up all the Azure resources created by this application:
-
-1. Run `azd down --purge`
-2. When asked if you are sure you want to continue, enter `y`
-
-The resource group and all the resources will be deleted.
-
-### Local Development with Ollama
-
-If you have a machine with enough resources, you can run this application entirely locally without using any cloud resources. To do that, you first have to install [Ollama](https://ollama.com) and then run the following commands to download the models on your machine:
-
-```bash
-ollama pull llama3.1:latest
-ollama pull nomic-embed-text:latest
-```
-
-> [!NOTE]
-> The `llama3.1` model will download a few gigabytes of data, so it can take some time depending on your internet connection.
-
-After that you have to install the NPM dependencies:
-
-```bash
-npm install
-```
-
-Then you can start the application by running the following command which will start the web app and the API locally:
-
-```bash
-npm start
-```
-
-Then, open a new terminal running concurrently and run the following command to upload the SME documents from the `/data` folder to the API:
-
-```bash
-npm run upload:docs
-```
-
-This only has to be done once, unless you want to add more documents.
-
-You can now open the URL `http://localhost:8000` in your browser to start asking business questions.
-
-> [!NOTE]
-> While local models usually work well enough to answer the questions, sometimes they may not be able to follow perfectly the advanced formatting instructions for the citations and follow-up questions. This is expected, and a limitation of using smaller local models.
-
-### Local Development with Azure OpenAI
-
-First you need to provision the Azure resources needed to run the application. Follow the instructions in the [Deploy to Azure](#deploy-to-azure) section to deploy the application to Azure, then you'll be able to run the application locally using the deployed Azure resources.
-
-Once your deployment is complete, you should see a `.env` file in the `packages/api` folder. This file contains the environment variables needed to run the application using Azure resources.
-
-To run the application, you can then use the same commands as for the Ollama setup. This will start the web app and the API locally:
-
-```bash
-npm start
-```
-
-Open the URL `http://localhost:8000` in your browser to start asking business questions.
-
-Note that the documents are uploaded automatically when deploying to Azure with `azd up`.
-
-> [!TIP]
-> You can switch back to using Ollama models by simply deleting the `packages/api/.env` file and starting the application again. To regenerate the `.env` file, you can run `azd env get-values > packages/api/.env`.
-
-## Resources
-
-Here are some resources to learn more about the technologies used in this application:
-
-- [LangChain.js documentation](https://js.langchain.com)
-- [Generative AI with JavaScript](https://github.com/microsoft/generative-ai-with-javascript)
-- [Generative AI For Beginners](https://github.com/microsoft/generative-ai-for-beginners)
-- [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview)
-- [Azure Cosmos DB for NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/)
-- [Chat + Enterprise data with Azure OpenAI and Azure AI Search](https://github.com/Azure-Samples/azure-search-openai-javascript)
-
-You can also find [more Azure AI samples here](https://github.com/Azure-Samples/azureai-samples).
-
-## Guidance
-
-For detailed guidance on using and customizing DeepSME Copilot, please refer to our [tutorial series](./docs/tutorial/01-introduction.md).
-
 ## Troubleshooting
 
 If you encounter issues while running or deploying DeepSME Copilot, please check our [troubleshooting guide](./docs/troubleshooting.md). For additional support, please [open an issue](https://github.com/USER/deepsme-copilot/issues) in this repository.
@@ -366,14 +246,6 @@ If you encounter issues while running or deploying DeepSME Copilot, please check
 - **Local development issues**: Ensure Ollama models are downloaded and running
 
 ## Contributing
-
-This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
@@ -395,6 +267,6 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 _Empowering small businesses with AI-driven guidance_
 
-**© 2025 USER. All rights reserved.**
+**© 2025 itskipronoh. All rights reserved.**
 
 </div>
