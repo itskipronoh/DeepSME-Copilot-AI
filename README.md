@@ -1,40 +1,64 @@
 <!-- prettier-ignore -->
 <div align="center">
 
-<img src="./packages/webapp/public/favicon.png" alt="" align="center" height="64" />
+<img src="./packages/webapp/public/favicon.svg" alt="DeepSME Copilot Logo" align="center" height="64" />
 
-# Serverless AI Chat with RAG using LangChain.js
+# DeepSME Copilot
 
-[![Open project in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open-blue?style=flat-square&logo=github)](https://codespaces.new/Azure-Samples/serverless-chat-langchainjs?hide_repo_select=true&ref=main&quickstart=true)
-[![Join Azure AI Community Discord](https://img.shields.io/badge/Discord-Azure_AI_Community-blue?style=flat-square&logo=discord&color=5865f2&logoColor=fff)](https://discord.gg/kzRShWzttr)
-[![Official Learn documentation](https://img.shields.io/badge/Documentation-00a3ee?style=flat-square)](https://learn.microsoft.com/azure/developer/javascript/ai/get-started-app-chat-template-langchainjs)
-[![Watch to learn about RAG and this sample on YouTube](https://img.shields.io/badge/YouTube-d95652.svg?style=flat-square&logo=youtube)](https://www.youtube.com/watch?v=xkFOmx5yxIA&list=PLlrxD0HtieHi5ZpsHULPLxm839IrhmeDk&index=4)
-[![dev.to blog post walkthrough](https://img.shields.io/badge/Blog%20post-black?style=flat-square&logo=dev.to)](https://dev.to/azure/build-a-serverless-chatgpt-with-rag-using-langchainjs-3487)
-<br>
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Azure-Samples/serverless-chat-langchainjs/build-test.yaml?style=flat-square&label=Build)](https://github.com/Azure-Samples/serverless-chat-langchainjs/actions)
-![Node version](https://img.shields.io/badge/Node.js->=20-3c873a?style=flat-square)
-[![Ollama + Llama3.1](https://img.shields.io/badge/Ollama-Llama3.1-ff7000?style=flat-square)](https://ollama.com/library/llama3.1)
+**AI-Powered Assistant for African Small and Micro-Enterprises**
+
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+[![Node version](https://img.shields.io/badge/Node.js->=20-3c873a?style=flat-square)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-blue?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
-:star: If you like this sample, star it on GitHub — it helps a lot!
+:star: If you like this project, star it on GitHub — it helps a lot!
 
-[Overview](#overview) • [Get started](#getting-started) • [Run the sample](#run-the-sample) • [Resources](#resources) • [FAQ](#faq) • [Troubleshooting](#troubleshooting)
+[Problem Statement](#the-problem-i-am-solving) • [Why This Template](#why-i-picked-this-template) • [Customizations](#what-customizations-i-made) • [Getting Started](#getting-started) • [Architecture](#architecture) • [Troubleshooting](#troubleshooting)
 
-![Animation showing the chat app in action](./docs/images/demo.gif)
+![DeepSME Copilot Demo](./docs/images/demo.gif)
 
 </div>
 
-This sample shows how to build a serverless AI chat experience with Retrieval-Augmented Generation using [LangChain.js](https://js.langchain.com/) and Azure. The application is hosted on [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview) and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-javascript), with [Azure Cosmos DB for NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/vector-) as the vector database. You can use it as a starting point for building more complex AI applications.
+## The Problem I Am Solving
+
+Small and Micro-Enterprises (SMEs) in Africa face significant challenges in accessing reliable business guidance, financial literacy support, and compliance information. Specifically:
+
+### **Financial Literacy Challenges**
+
+- Limited access to bookkeeping and tax guidance
+- Difficulty understanding KRA tax returns and NHIF/NSSF contributions
+- Lack of knowledge about loan records and invoice management
+
+### **Compliance and Regulatory Barriers**
+
+- Complex Kenyan business registration processes
+- Confusing permit requirements and renewal procedures
+- Limited understanding of cooperative registration with Ministry of Co-operatives
+
+### **Business Growth Obstacles**
+
+- Insufficient knowledge about financing options (KEJET, NYOTA, Financial Inclusion Fund)
+- Poor customer service and grievance handling practices
+- Limited understanding of digital payment systems (M-Pesa, banking)
+- Lack of awareness about savings groups (chamas) and SACCOs
+
+### **Information Access Issues**
+
+- Scattered information across multiple government agencies
+- Language barriers in official documentation
+- Limited internet connectivity for research
+- Cost of professional business consultancy
+
+**DeepSME Copilot addresses these challenges by providing an AI-powered assistant that offers instant, practical guidance in simple language, backed by official Kenyan SME resources.**
 
 > [!TIP]
 > You can test this application locally without any cost using [Ollama](https://ollama.com/). Follow the instructions in the [Local Development](#local-development) section to get started.
 
 ## Overview
 
-Building AI applications can be complex and time-consuming, but using LangChain.js and Azure serverless technologies allows to greatly simplify the process. This application is a chatbot that uses a set of enterprise documents to generate responses to user queries.
+Building AI applications can be complex and time-consuming, but using LangChain.js and Azure serverless technologies allows me to greatly simplify the process. This application is a chatbot that uses a set of SME-focused documents to generate responses to business queries.
 
-We provide sample data to make this sample ready to try, but feel free to replace it with your own. We use a fictitious company called _Contoso Real Estate_, and the experience allows its customers to ask support questions about the usage of its products. The sample data includes a set of documents that describes its terms of service, privacy policy and a support guide.
+I provide sample data focused on African SME challenges to make this ready to try, but feel free to replace it with your own. I focus on **Kenyan Small and Micro-Enterprises**, and the experience allows business owners to ask questions about compliance, financing, tax guidance, and business development. The sample data includes documents from MSEA, KEJET, NYOTA, and other relevant Kenyan business resources.
 
 <div align="center">
   <img src="./docs/images/architecture.drawio.png" alt="Application architecture" width="640px" />
@@ -44,92 +68,198 @@ This application is made from multiple components:
 
 - A web app made with a single chat web component built with [Lit](https://lit.dev) and hosted on [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview). The code is located in the `packages/webapp` folder.
 
-- A serverless API built with [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-javascript) and using [LangChain.js](https://js.langchain.com/) to ingest the documents and generate responses to the user chat queries. The code is located in the `packages/api` folder.
+- A serverless API built with [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-javascript) and using [LangChain.js](https://js.langchain.com/) to ingest SME-focused documents and generate responses to business queries. The code is located in the `packages/api` folder.
 
-- A database to store chat sessions and the text extracted from the documents and the vectors generated by LangChain.js, using [Azure Cosmos DB for NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/).
+- A database to store chat sessions and the text extracted from business documents and the vectors generated by LangChain.js, using [Azure Cosmos DB for NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/).
 
-- A file storage to store the source documents, using [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction).
+- A file storage to store the source SME documents, using [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction).
 
-We use the [HTTP protocol for AI chat apps](https://aka.ms/chatprotocol) to communicate between the web app and the API.
+I use the [HTTP protocol for AI chat apps](https://aka.ms/chatprotocol) to communicate between the web app and the API.
+
+## Why I Picked This Template
+
+I chose the **Azure Serverless AI Chat with RAG using LangChain.js** template because it provides:
+
+### **Technical Advantages**
+
+- **Serverless Architecture**: Cost-effective scaling for SMEs with varying usage patterns
+- **RAG (Retrieval-Augmented Generation)**: Ensures responses are based on verified official documents
+- **Multi-modal Support**: Can integrate with WhatsApp, USSD, and web for diverse user access
+- **Offline Capability**: Can run locally with Ollama for areas with limited internet
+
+### **Business Benefits**
+
+- **Quick Deployment**: Faster time-to-market for SME assistance
+- **Document Integration**: Easy ingestion of official Kenyan government documents
+- **Chat History**: Maintains conversation context for ongoing business guidance
+- **Customizable**: Flexible framework for African market adaptation
+
+### **SME-Specific Features**
+
+- **Multiple AI Models**: OpenAI for cloud, Ollama for local deployment
+- **Document Management**: Perfect for integrating MSEA, KEJET, NYOTA resources
+- **Scalable Storage**: Azure Cosmos DB for growing user base
+- **Cost Control**: Pay-per-use model suitable for development budgets
+
+## What Customizations I Made
+
+### **1. Complete Branding Transformation**
+
+- **Logo Design**: Created interactive neural network logo with hexagonal SME structure
+- **Color Scheme**: Changed from green to professional navy blue with AI aesthetics
+- **Typography**: Updated to reflect business professionalism
+- **Favicon**: Custom SVG with SME business patterns
+
+### **2. SME-Focused Content**
+
+- **System Prompt**: Rewrote AI assistant persona to focus on African SME support
+- **Prompt Suggestions**: Replaced generic examples with specific Kenyan business questions:
+  - "How do I access the Financial Inclusion Fund for my SME?"
+  - "What training programs does KEJET/NYOTA offer for small businesses and How do I apply for them?"
+  - "How can I register my cooperative with the Ministry of Co-operatives?"
+  - "What business development services are available from MSEA?"
+
+### **3. UI/UX Enhancements**
+
+- **Welcome Message**: "Welcome to DeepSME Copilot! Ask me anything about your business..."
+- **Mobile Responsiveness**: Enhanced navigation for mobile/USSD integration
+- **Accessibility**: Improved for users with varying tech literacy levels
+- **Interactive Elements**: Animated logo with neural network patterns
+
+### **4. Backend Optimizations**
+
+- **OpenAI Integration**: Configured for OpenAI API instead of Azure OpenAI for broader access
+- **Document Structure**: Prepared for Kenyan government document ingestion
+- **Error Handling**: Improved user-friendly error messages
+- **Performance**: Optimized for African internet conditions
+
+### **5. Content Preparation**
+
+- **Sample Documents**: Created SME business guide with Kenyan context
+- **Official Sources**: Prepared structure for MSEA, KEJET, NYOTA, Ministry documents
+- **Language Support**: Framework for Swahili and local language integration
+
+### **6. Deployment Configuration**
+
+- **Environment Variables**: Configured for OpenAI API and Azure services
+- **Local Development**: Set up Ollama for offline testing
+- **Security**: Enhanced for business data protection
 
 ## Features
 
-- **Serverless Architecture**: Utilizes Azure Functions and Azure Static Web Apps for a fully serverless deployment.
-- **Retrieval-Augmented Generation (RAG)**: Combines the power of Azure Cosmos DB and LangChain.js to provide relevant and accurate responses.
-- **Chat Sessions History**: Maintains a personal chat history for each user, allowing them to revisit previous conversations.
-- **Scalable and Cost-Effective**: Leverages Azure's serverless offerings to provide a scalable and cost-effective solution.
-- **Local Development**: Supports local development using Ollama for testing without any cloud costs.
+- **Serverless Architecture**: Utilizes Azure Functions and Azure Static Web Apps for fully serverless deployment optimized for African SME needs.
+- **Retrieval-Augmented Generation (RAG)**: Combines Azure Cosmos DB and LangChain.js to provide responses based on verified Kenyan business documents.
+- **SME-Focused Chat Interface**: Tailored for small business owners with simplified language and relevant prompts.
+- **Chat Sessions History**: Maintains personal chat history for ongoing business guidance and relationship building.
+- **Multi-Language Ready**: Framework prepared for Swahili and other local languages.
+- **Mobile-First Design**: Optimized for mobile access common in African markets.
+- **Offline Capability**: Supports local development using Ollama for areas with limited internet connectivity.
+- **Cost-Effective**: Leverages Azure's serverless offerings with pay-per-use model suitable for development budgets.
+- **Document Management**: Easy integration of official government and business development resources.
+- **Scalable Storage**: Azure Cosmos DB designed to grow with expanding user base across Africa.
 
-## Getting started
+## Getting Started
 
 There are multiple ways to get started with this project.
 
-The quickest way is to use [GitHub Codespaces](#use-github-codespaces) that provides a preconfigured environment for you. Alternatively, you can [set up your local environment](#use-your-local-environment) following the instructions below.
+The quickest way is to use your local environment for development. You can also deploy directly to Azure for production use.
 
 > [!IMPORTANT]
-> If you want to run this sample entirely locally using Ollama, you have to follow the instructions in the [local environment](#use-your-local-environment) section.
+> If you want to run this application entirely locally using Ollama, follow the instructions in the [Local Development with Ollama](#local-development-with-ollama) section.
 
-### Use your local environment
-
-You need to install following tools to work on your local machine:
+### Prerequisites
 
 - [Node.js LTS](https://nodejs.org/download/)
 - [Azure Developer CLI](https://aka.ms/azure-dev/install)
 - [Git](https://git-scm.com/downloads)
 - [PowerShell 7+](https://github.com/powershell/powershell) _(for Windows users only)_
-  - **Important**: Ensure you can run `pwsh.exe` from a PowerShell command. If this fails, you likely need to upgrade PowerShell.
-  - Instead of Powershell, you can also use Git Bash or WSL to run the Azure Developer CLI commands.
-- [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?tabs=macos%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-javascript) _(should be installed automatically with NPM, only install manually if the API fails to start)_
+- [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 
-Then you can get the project code:
+### Quick Start
 
-1. [**Fork**](https://github.com/Azure-Samples/serverless-chat-langchainjs/fork) the project to create your own copy of this repository.
-2. On your forked repository, select the **Code** button, then the **Local** tab, and copy the URL of your forked repository.
+1. **Clone the repository**
+
+   ```bash
+   git clone <your-repo-url>
+   cd deepsme-copilot
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   - For Azure: Configure OpenAI API key in Azure environment
+   - For local: Set up Ollama (see Local Development section)
+
+4. **Deploy to Azure**
+
+   ```bash
+   azd auth login
+   azd up
+   ```
+
+5. **Upload SME documents**
+   ```bash
+   npm run upload:docs
+   ```
+
+## Architecture
 
 <div align="center">
-  <img src="./docs/images/clone-url.png" alt="Screenshot showing how to copy the repository URL" width="400px" />
+  <img src="./docs/images/architecture.drawio.png" alt="DeepSME Copilot Architecture" width="640px" />
 </div>
-3. Open a terminal and run this command to clone the repo: <code> git clone &lt;your-repo-url&gt; </code>
 
-### Use GitHub Codespaces
+### **Components**
 
-You can run this project directly in your browser by using GitHub Codespaces, which will open a web-based VS Code:
+- **Web App**: Lit-based chat interface hosted on Azure Static Web Apps, optimized for SME user experience
+- **API**: Azure Functions with LangChain.js for document processing and chat responses focused on business guidance
+- **Database**: Azure Cosmos DB for NoSQL (chat history and vector storage of SME documents)
+- **Storage**: Azure Blob Storage for SME business documents and government resources
+- **AI Models**: OpenAI GPT-4o-mini for production, Ollama for local development
 
-[![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=blue&logo=github)](https://codespaces.new/Azure-Samples/serverless-chat-langchainjs?hide_repo_select=true&ref&quickstart=true)
+### **Data Flow**
 
-### Use a VSCode dev container
+1. **User Query**: SME owner asks business question via web interface
+2. **Document Retrieval**: RAG system searches relevant Kenyan business documents
+3. **AI Processing**: LangChain.js combines query with retrieved context
+4. **Response Generation**: AI provides practical, step-by-step guidance
+5. **History Storage**: Conversation saved for ongoing business support
 
-A similar option to Codespaces is VS Code Dev Containers, that will open the project in your local VS Code instance using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+### **Integration Points**
 
-You will also need to have [Docker](https://www.docker.com/products/docker-desktop) installed on your machine to run the container.
+- **WhatsApp Business API**: For mobile users (future enhancement)
+- **USSD Gateway**: For feature phone access (future enhancement)
+- **Government APIs**: Direct integration with MSEA, KRA systems (future enhancement)
 
-[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/serverless-chat-langchainjs)
+## Run the Application
 
-## Run the sample
+There are multiple ways to run this application: locally using Ollama or Azure OpenAI models, or by deploying it to Azure.
 
-There are multiple ways to run this sample: locally using Ollama or Azure OpenAI models, or by deploying it to Azure.
+### Deploy to Azure
 
-### Deploy the sample to Azure
+#### Azure Prerequisites
 
-#### Azure prerequisites
-
-- **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free) to get free Azure credits to get started. If you're a student, you can also get free credits with [Azure for Students](https://aka.ms/azureforstudents).
+- **Azure account**. If you're new to Azure, [get an Azure account for free](https://azure.microsoft.com/free) to get free Azure credits to get started.
 - **Azure subscription with access enabled for the Azure OpenAI service**. You can request access with [this form](https://aka.ms/oaiapply).
 - **Azure account permissions**:
-  - Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner). If you don't have subscription-level permissions, you must be granted [RBAC](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview) for an existing resource group and [deploy to that existing group](docs/deploy_existing.md#resource-group).
+  - Your Azure account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [Role Based Access Control Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#role-based-access-control-administrator-preview), [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator), or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner).
   - Your Azure account also needs `Microsoft.Resources/deployments/write` permissions on the subscription level.
 
-#### Cost estimation
+#### Cost Estimation
 
-See the [cost estimation](./docs/cost.md) details for running this sample on Azure.
+See the [cost estimation](./docs/cost.md) details for running this application on Azure.
 
-#### Deploy the sample
+#### Deploy the Application
 
 1. Open a terminal and navigate to the root of the project.
 2. Authenticate with Azure by running `azd auth login`.
-3. Run `azd up` to deploy the application to Azure. This will provision Azure resources, deploy this sample, and build the search index based on the files found in the `./data` folder.
+3. Run `azd up` to deploy the application to Azure. This will provision Azure resources, deploy the application, and build the search index based on the SME documents found in the `./data` folder.
    - You will be prompted to select a base location for the resources. If you're unsure of which location to choose, select `eastus2`.
-   - By default, the OpenAI resource will be deployed to `eastus2`. You can set a different location with `azd env set AZURE_OPENAI_RESOURCE_GROUP_LOCATION <location>`. Currently only a short list of locations is accepted. That location list is based on the [OpenAI model availability table](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#standard-deployment-model-availability) and may become outdated as availability changes.
+   - By default, the OpenAI resource will be deployed to `eastus2`. You can set a different location with `azd env set AZURE_OPENAI_RESOURCE_GROUP_LOCATION <location>`.
 
 The deployment process will take a few minutes. Once it's done, you'll see the URL of the web app in the terminal.
 
@@ -137,36 +267,24 @@ The deployment process will take a few minutes. Once it's done, you'll see the U
   <img src="./docs/images/azd-up.png" alt="Screenshot of the azd up command result" width="600px" />
 </div>
 
-You can now open the web app in your browser and start chatting with the bot.
+You can now open the web app in your browser and start asking SME-related questions.
 
-##### Enhance security
+##### Enhance Security
 
-When deploying the sample in an enterprise context, you may want to enforce tighter security restrictions to protect your data and resources. See the [enhance security](./docs/enhance-security.md) guide for more information.
+When deploying in an enterprise context, you may want to enforce tighter security restrictions to protect your data and resources. See the [enhance security](./docs/enhance-security.md) guide for more information.
 
-#### Enable CI/CD
+#### Clean Up
 
-If you want to enable Continuous Deployment for your forked repository, you need to configure the Azure pipeline first:
-
-1. Open a terminal at the root of your forked project.
-2. Authenticate with Azure by running `azd auth login`.
-3. Run `azd pipeline config` to configure the required secrets and variables for connecting to Azure from GitHub Actions.
-   - This command will set up the necessary Azure service principal and configure GitHub repository secrets.
-   - Follow the prompts to complete the configuration.
-
-Once configured, the GitHub Actions workflow will automatically deploy your application to Azure whenever you push changes to the main branch.
-
-#### Clean up
-
-To clean up all the Azure resources created by this sample:
+To clean up all the Azure resources created by this application:
 
 1. Run `azd down --purge`
 2. When asked if you are sure you want to continue, enter `y`
 
 The resource group and all the resources will be deleted.
 
-### Run the sample locally with Ollama
+### Local Development with Ollama
 
-If you have a machine with enough resources, you can run this sample entirely locally without using any cloud resources. To do that, you first have to install [Ollama](https://ollama.com) and then run the following commands to download the models on your machine:
+If you have a machine with enough resources, you can run this application entirely locally without using any cloud resources. To do that, you first have to install [Ollama](https://ollama.com) and then run the following commands to download the models on your machine:
 
 ```bash
 ollama pull llama3.1:latest
@@ -174,7 +292,7 @@ ollama pull nomic-embed-text:latest
 ```
 
 > [!NOTE]
-> The `llama3.1` model with download a few gigabytes of data, so it can take some time depending on your internet connection.
+> The `llama3.1` model will download a few gigabytes of data, so it can take some time depending on your internet connection.
 
 After that you have to install the NPM dependencies:
 
@@ -188,7 +306,7 @@ Then you can start the application by running the following command which will s
 npm start
 ```
 
-Then, open a new terminal running concurrently and run the following command to upload the PDF documents from the `/data` folder to the API:
+Then, open a new terminal running concurrently and run the following command to upload the SME documents from the `/data` folder to the API:
 
 ```bash
 npm run upload:docs
@@ -196,56 +314,56 @@ npm run upload:docs
 
 This only has to be done once, unless you want to add more documents.
 
-You can now open the URL `http://localhost:8000` in your browser to start chatting with the bot.
+You can now open the URL `http://localhost:8000` in your browser to start asking business questions.
 
 > [!NOTE]
-> While local models usually works well enough to answer the questions, sometimes they may not be able to follow perfectly the advanced formatting instructions for the citations and follow-up questions. This is expected, and a limitation of using smaller local models.
+> While local models usually work well enough to answer the questions, sometimes they may not be able to follow perfectly the advanced formatting instructions for the citations and follow-up questions. This is expected, and a limitation of using smaller local models.
 
-### Run the sample locally with Azure OpenAI models
+### Local Development with Azure OpenAI
 
-First you need to provision the Azure resources needed to run the sample. Follow the instructions in the [Deploy the sample to Azure](#deploy-the-sample-to-azure) section to deploy the sample to Azure, then you'll be able to run the sample locally using the deployed Azure resources.
+First you need to provision the Azure resources needed to run the application. Follow the instructions in the [Deploy to Azure](#deploy-to-azure) section to deploy the application to Azure, then you'll be able to run the application locally using the deployed Azure resources.
 
 Once your deployment is complete, you should see a `.env` file in the `packages/api` folder. This file contains the environment variables needed to run the application using Azure resources.
 
-To run the sample, you can then use the same commands as for the Ollama setup. This will start the web app and the API locally:
+To run the application, you can then use the same commands as for the Ollama setup. This will start the web app and the API locally:
 
 ```bash
 npm start
 ```
 
-Open the URL `http://localhost:8000` in your browser to start chatting with the bot.
+Open the URL `http://localhost:8000` in your browser to start asking business questions.
 
-Note that the documents are uploaded automatically when deploying the sample to Azure with `azd up`.
+Note that the documents are uploaded automatically when deploying to Azure with `azd up`.
 
 > [!TIP]
 > You can switch back to using Ollama models by simply deleting the `packages/api/.env` file and starting the application again. To regenerate the `.env` file, you can run `azd env get-values > packages/api/.env`.
 
 ## Resources
 
-Here are some resources to learn more about the technologies used in this sample:
+Here are some resources to learn more about the technologies used in this application:
 
 - [LangChain.js documentation](https://js.langchain.com)
 - [Generative AI with JavaScript](https://github.com/microsoft/generative-ai-with-javascript)
 - [Generative AI For Beginners](https://github.com/microsoft/generative-ai-for-beginners)
 - [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview)
 - [Azure Cosmos DB for NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/)
-- [Ask YouTube: LangChain.js + Azure Quickstart sample](https://github.com/Azure-Samples/langchainjs-quickstart-demo)
 - [Chat + Enterprise data with Azure OpenAI and Azure AI Search](https://github.com/Azure-Samples/azure-search-openai-javascript)
-- [Revolutionize your Enterprise Data with Chat: Next-gen Apps w/ Azure OpenAI and AI Search](https://aka.ms/entgptsearchblog)
 
 You can also find [more Azure AI samples here](https://github.com/Azure-Samples/azureai-samples).
 
-## FAQ
+## Guidance
 
-You can find answers to frequently asked questions in the [FAQ](./docs/faq.md).
+For detailed guidance on using and customizing DeepSME Copilot, please refer to our [tutorial series](./docs/tutorial/01-introduction.md).
 
 ## Troubleshooting
 
-If you have any issue when running or deploying this sample, please check the [troubleshooting guide](./docs/troubleshooting.md). If you can't find a solution to your problem, please [open an issue](https://github.com/Azure-Samples/serverless-chat-langchainjs/issues) in this repository.
+If you encounter issues while running or deploying DeepSME Copilot, please check our [troubleshooting guide](./docs/troubleshooting.md). For additional support, please [open an issue](https://github.com/USER/deepsme-copilot/issues) in this repository.
 
-## Guidance
+### **Common Issues**
 
-For more detailed guidance on how to use this sample, please refer to the [tutorial](./docs/tutorial/01-introduction.md).
+- **"We are currently experiencing an issue"**: Check OpenAI API key configuration
+- **Document upload fails**: Verify Azure Function app is running and accessible
+- **Local development issues**: Ensure Ollama models are downloaded and running
 
 ## Contributing
 
@@ -268,3 +386,15 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+---
+
+<div align="center">
+
+**Built with ❤️ for African SMEs**
+
+_Empowering small businesses with AI-driven guidance_
+
+**© 2025 USER. All rights reserved.**
+
+</div>
