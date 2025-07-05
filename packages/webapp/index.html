@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="DeepSME Copilot: Your AI-powered partner for financial clarity, compliance, customer care, and business growth" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>DeepSME Copilot - AI Assistant for African Small Businesses</title>
+    <style>
+      :root {
+        --azc-primary: #1e3a8a;
+        --azc-secondary: #1e40af;
+        --azc-accent: #3b82f6;
+        --azc-bg: #f8fafc;
+        --azc-text: #1e293b;
+        --azc-border-radius: 16px;
+      }
+      html,
+      body {
+        font-size: 16px;
+        margin: 0;
+        background: var(--azc-bg);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+      nav {
+        display: flex;
+        flex: 0 1 auto;
+        background: linear-gradient(135deg, var(--azc-primary), var(--azc-secondary));
+        color: #fff;
+        padding: 20px;
+        font-family:
+          'Segoe UI',
+          -apple-system,
+          BlinkMacSystemFont,
+          Roboto,
+          'Helvetica Neue',
+          sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+      
+      nav > * {
+        position: relative;
+        z-index: 2;
+      }
+      
+      nav::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+        animation: shimmer 3s infinite;
+        z-index: 1;
+      }
+      
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px;
+          font-size: 1.2rem;
+        }
+        nav img {
+          height: 32px;
+        }
+      }
+      
+      .nav-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      
+      .nav-subtitle {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 2px;
+      }
+      
+      .nav-content {
+        margin-left: 16px;
+      }
+      
+      @media (max-width: 768px) {
+        .nav-title {
+          font-size: 1.2rem;
+        }
+        .nav-subtitle {
+          font-size: 0.8rem;
+        }
+        .nav-content {
+          margin-left: 12px;
+        }
+      }
+      main {
+        flex: 1;
+        position: relative;
+        display: flex;
+        min-height: 0;
+      }
+      azc-chat {
+        flex: 1;
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <deepsme-logo size="48" animated></deepsme-logo>
+      <div class="nav-content">
+        <div class="nav-title">DeepSME Copilot</div>
+        <div class="nav-subtitle">Your AI-powered business assistant</div>
+      </div>
+    </nav>
+    <main>
+      <azc-history id="chatHistory"></azc-history>
+      <azc-chat id="chat"></azc-chat>
+    </main>
+    <script type="module" src="/src/index.ts"></script>
+    <script>
+      // Generate a unique ID and store it in local storage
+      const userId = localStorage.getItem('userId') || crypto.randomUUID();
+      localStorage.setItem('userId', userId);
+
+      window.chatHistory.userId = userId;
+      window.chatHistory.addEventListener('loadSession', (e) => {
+        const { id, messages } = e.detail;
+        window.chat.sessionId = id;
+        window.chat.messages = messages;
+      });
+
+      window.chat.userId = userId;
+      window.chat.addEventListener('messagesUpdated', () => {
+        window.chatHistory.refresh();
+      });
+    </script>
+  </body>
+</html>
