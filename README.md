@@ -1,7 +1,7 @@
 <!-- prettier-ignore -->
 <div align="center">
 
-<img src="./packages/webapp/public/favicon.svg" alt="DeepSME Copilot Logo" align="center" height="64" />
+<img src="./packages/webapp/public/favicon.svg" alt="DeepSME Copilot Logo" align="center" height="100" />
 
 # DeepSME Copilot
 
